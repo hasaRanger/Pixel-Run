@@ -1,56 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    height: 100%;
+    overflow: hidden;/*Prevents scrollbars from appearing*/
+}
+
 .background{
     background-image: url("/assets/images/background/background.png");
-    background-size: 100%;
-    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
 }
 
 .score{
-    font-size: 40px;
+    font-size: clamp(24px, 3vw, 50px);
     font-weight: 400;
     font-family:"Tiny5", sans-serif;
     color: rgb(200, 188, 25);
     text-shadow:-1px -1px 0 black, 1px -1px 0 rgb(255, 0, 0), -1px  1px 0 black, 1px  1px 0 black;/*Mimics text stroke*/ 
     position: absolute;
-    margin-top: 20px;
-    margin-left: 20px;
+    top: clamp(15px, 2vh, 40px);
+    left: clamp(15px, 2vw, 40px);
+    z-index: 100;/*Ensures score is always on top*/
 }
 
 .title{
-    font-size: 200px;
+    font-size: clamp(150px, 12vw, 250px);
     font-family:"Jersey 10", sans-serif;
     color: rgb(200, 188, 25);
     text-shadow:-5px -1px 0 rgb(146, 111, 5), 3px -1px 0 black, -5px  1px 0 rgb(146, 111, 5), 3px  1px 0 black;
     position: absolute;
     left: 50%;
+    top: clamp(80px, 15vh, 150px);
     transform: translateX(-50%);/*Centers the title, when combined with left: 50%;*/
     white-space: nowrap;/*Prevents line break*/
+    z-index: 10;
 }
 
 .character{
     position:fixed;
-    height: 35%;
-    margin-top: 19%;
-    margin-left: 5%;
+    height: clamp(100px, 25vh, 400px);
+    width: auto;
+    left: 8%;
+    bottom: 26%;
+    z-index: 5;
+    image-rendering: pixelated;/*Prevents anti-aliasing on character*/
+    -ms-interpolation-mode: nearest-neighbor;
 }
 
 .play{
-    font-size: 50px;
     font-family:"Jersey 10", sans-serif;
     color: white;
     text-shadow:-1px -1px 0 black, 1px -1px 0 black, -1px  1px 0 black, 1px  1px 0 black;/*Mimics text stroke*/ 
-    position: absolute;
-    left: 80%;
-    top: 60%;
-    padding: 12px 24px;
     background-color: burlywood;
     box-shadow: 0 0 0 4px rgb(123, 54, 11);/*thick outer border for pixel effect*/
-    border-radius: 20px;
+    border-radius: clamp(12px, 1.5vw, 25px);
+    border: none;
     text-transform: uppercase;
     cursor: pointer;
     outline: none;
 
-    image-rendering: pixelated;/*Prevents anti-aliasing on border*/
-    -ms-interpolation-mode: nearest-neighbor;/*Prevents anti-aliasing on border for IE*/
+    font-size: clamp(30px, 4vw, 60px);
+    padding: clamp(10px, 1.5vh, 20px) clamp(20px, 3vw, 40px);
+    right:12%;
+    bottom: 25%;
+    position: absolute;
 }
 
 .play:hover{
@@ -59,3 +79,130 @@
     box-shadow: 0 0 0 4px rgb(61, 25, 1);
     text-shadow: none;
 }
+
+.play:active{
+    transform: translate(0);
+}
+
+        /* PC Screen Size Optimizations */
+        
+        /* Small PC screens (1024px to 1366px) - common laptop sizes */
+        @media screen and (min-width: 1024px) and (max-width: 1366px) {
+            .title {
+                font-size: clamp(100px, 10vw, 180px);
+                top: clamp(60px, 12vh, 120px);
+            }
+            
+            .character {
+                height: clamp(150px, 22vh, 300px);
+                left: clamp(50px, 6vw, 100px);
+            }
+            
+            .play {
+                font-size: clamp(35px, 3.5vw, 50px);
+                right: clamp(80px, 9vw, 130px);
+            }
+        }
+
+        /* Medium PC screens (1366px to 1920px) - most common desktop sizes */
+        @media screen and (min-width: 1366px) and (max-width: 1920px) {
+            .title {
+                font-size: clamp(120px, 9vw, 200px);
+                top: clamp(80px, 14vh, 140px);
+            }
+            
+            .character {
+                height: clamp(180px, 24vh, 350px);
+                left: clamp(60px, 6vw, 110px);
+            }
+            
+            .play {
+                font-size: clamp(40px, 3.2vw, 55px);
+                right: clamp(100px, 10vw, 140px);
+            }
+        }
+
+        /* Large PC screens (1920px to 2560px) - Full HD to QHD */
+        @media screen and (min-width: 1920px) and (max-width: 2560px) {
+            .title {
+                font-size: clamp(140px, 8vw, 220px);
+                top: clamp(100px, 15vh, 160px);
+            }
+            
+            .character {
+                height: clamp(200px, 26vh, 380px);
+                left: clamp(80px, 6vw, 130px);
+            }
+            
+            .play {
+                font-size: clamp(45px, 3vw, 58px);
+                right: clamp(120px, 10vw, 160px);
+            }
+            
+            .score {
+                font-size: clamp(30px, 2.5vw, 45px);
+                top: clamp(20px, 2.5vh, 45px);
+                left: clamp(20px, 2.5vw, 45px);
+            }
+        }
+
+        /* Ultra-wide and 4K screens (2560px and above) */
+        @media screen and (min-width: 2560px) {
+            .title {
+                font-size: clamp(160px, 7vw, 280px);
+                top: clamp(120px, 16vh, 200px);
+            }
+            
+            .character {
+                height: clamp(240px, 28vh, 450px);
+                left: clamp(100px, 7vw, 180px);
+            }
+            
+            .play {
+                font-size: clamp(50px, 2.8vw, 65px);
+                padding: clamp(15px, 2vh, 25px) clamp(30px, 4vw, 50px);
+                right: clamp(150px, 12vw, 200px);
+                bottom: clamp(150px, 20vh, 280px);
+            }
+            
+            .score {
+                font-size: clamp(35px, 2.2vw, 55px);
+                top: clamp(25px, 3vh, 50px);
+                left: clamp(25px, 3vw, 50px);
+            }
+        }
+
+        /* Aspect ratio adjustments for ultrawide monitors */
+        @media screen and (min-aspect-ratio: 21/9) {
+            .character {
+                left: clamp(80px, 8vw, 200px);
+            }
+            
+            .play {
+                right: clamp(100px, 12vw, 250px);
+            }
+            
+            .title {
+                font-size: clamp(100px, 10vw, 240px);
+            }
+        }
+
+        /* High refresh rate and gaming monitor optimizations */
+        @media screen and (min-resolution: 144dpi) {
+            .character,
+            .play {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: pixelated;
+            }
+        }
+
+        /* Accessibility and performance */
+        @media (prefers-reduced-motion: reduce) {
+            .play {
+                transition: none;
+            }
+            
+            .play:hover {
+                transform: none;
+            }
+        }
