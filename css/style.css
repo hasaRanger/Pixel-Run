@@ -19,7 +19,7 @@
     font-size: 200px;
     font-family:"Jersey 10", sans-serif;
     color: rgb(200, 188, 25);
-    text-shadow:-3px -1px 0 black, 3px -1px 0 black, -3px  1px 0 black, 3px  1px 0 black;
+    text-shadow:-5px -1px 0 rgb(146, 111, 5), 3px -1px 0 black, -5px  1px 0 rgb(146, 111, 5), 3px  1px 0 black;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);/*Centers the title, when combined with left: 50%;*/
