@@ -1,4 +1,4 @@
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -18,12 +18,32 @@ html, body{
     height: 100vh;
 }
 
+.game.container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;/*Prevents interaction with game container*/
+    z-index: 1;
+}
+
+.ui.container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;/*Allows interaction with UI container*/
+    z-index: 10;/*Ensures UI is always on top*/
+}
+
 .score{
     font-size: clamp(24px, 3vw, 50px);
-    font-weight: 400;
+    font-weight: bold;
     font-family:"Tiny5", sans-serif;
     color: rgb(200, 188, 25);
-    text-shadow:-1px -1px 0 black, 1px -1px 0 rgb(255, 0, 0), -1px  1px 0 black, 1px  1px 0 black;/*Mimics text stroke*/ 
+    text-shadow:-1px -1px 0 rgb(146, 111, 5), 1px -1px 0 black, -1px  1px 0 rgb(146, 111, 5), 1px  1px 0 black;/*Mimics text stroke*/ 
     position: absolute;
     top: clamp(15px, 2vh, 40px);
     left: clamp(15px, 2vw, 40px);
@@ -33,6 +53,8 @@ html, body{
 .title{
     font-size: clamp(150px, 12vw, 250px);
     font-family:"Jersey 10", sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.05em;
     color: rgb(200, 188, 25);
     text-shadow:-5px -1px 0 rgb(146, 111, 5), 3px -1px 0 black, -5px  1px 0 rgb(146, 111, 5), 3px  1px 0 black;
     position: absolute;
@@ -43,13 +65,23 @@ html, body{
     z-index: 10;
 }
 
+.game.container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;/*Prevents interaction with game container*/
+}
+
 .character{
-    position:fixed;
+    position: absolute;
     height: clamp(100px, 25vh, 400px);
-    width: auto;
+    width: min(150px, 8vw, 320px);
     left: 8%;
-    bottom: 26%;
-    z-index: 5;
+    bottom: 27%;
+    transform: translate(-50%, 0);/*Centers character on its x position*/
+    z-index: 10;
     image-rendering: pixelated;/*Prevents anti-aliasing on character*/
     -ms-interpolation-mode: nearest-neighbor;
 }
